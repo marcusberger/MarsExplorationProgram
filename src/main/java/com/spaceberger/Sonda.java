@@ -2,14 +2,38 @@ package com.spaceberger;
 
 public class Sonda {
 
-	String direcao;
-	int x, y;
+	private String direcao;
+	private int x, y;
 	
 	public Sonda(int x, int y, String direcao) {
 		this.x = x;
 		this.y = y;
 		this.direcao = direcao;
-		
+
+	}
+
+	public String getDirecao() {
+		return direcao;
+	}
+
+	public void setDirecao(String direcao) {
+		this.direcao = direcao;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
 	}
 
 	public void vira90Esquerda() {
@@ -49,12 +73,6 @@ public class Sonda {
 		}
 	}
 
-	@Override
-	public String toString() {
-
-		return x + " " + y + " " + direcao;
-	}
-
 	public void executarComandos(char[] comandos) {
 		for (char lrm : comandos) {
 
@@ -73,5 +91,11 @@ public class Sonda {
 			}
 		}
 
+	}
+
+	@Override
+	public String toString() {
+
+		return x + " " + y + " " + direcao;
 	}
 }
