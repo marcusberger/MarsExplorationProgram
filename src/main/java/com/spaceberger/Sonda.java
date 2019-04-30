@@ -4,7 +4,8 @@ public class Sonda {
 
 	private String direcao;
 	private int x, y;
-	
+	private Planalto planalto;
+
 	public Sonda(int x, int y, String direcao) {
 		this.x = x;
 		this.y = y;
@@ -71,6 +72,16 @@ public class Sonda {
 		} else if (direcao.equals("o")) {
 			x -= 1;
 		}
+
+		boolean ok = planalto.coordenadasDentroPlanalto(x, y);
+		if (ok == false) {
+			System.out.println("A sonda saiu do planalto");
+
+		}
+	}
+
+	public void obtendoInformacaoPlanalto(Planalto planalto) {
+		this.planalto = planalto;
 	}
 
 	public void executarComandos(char[] comandos) {
@@ -95,7 +106,7 @@ public class Sonda {
 
 	@Override
 	public String toString() {
-
 		return x + " " + y + " " + direcao;
 	}
+
 }
