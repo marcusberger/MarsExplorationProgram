@@ -2,22 +2,22 @@ package com.spaceberger;
 
 public class Sonda {
 
-	private String direcao;
+	private Direcao direcao;
 	private int x, y;
 	private Planalto planalto;
 
-	public Sonda(int x, int y, String direcao) {
+	public Sonda(int x, int y, Direcao direcao) {
 		this.x = x;
 		this.y = y;
 		this.direcao = direcao;
 
 	}
 
-	public String getDirecao() {
+	public Direcao getDirecao() {
 		return direcao;
 	}
 
-	public void setDirecao(String direcao) {
+	public void setDirecao(Direcao direcao) {
 		this.direcao = direcao;
 	}
 
@@ -38,45 +38,46 @@ public class Sonda {
 	}
 
 	public void vira90Esquerda() {
-		if (direcao.equals("n")) {
-			direcao = "o";
-		} else if (direcao.equals("s")) {
-			direcao = "l";
-		} else if (direcao.equals("o")) {
-			direcao = "s";
-		} else if (direcao.equals("l")) {
-			direcao = "n";
+		if (direcao.equals(Direcao.NORTE)) {
+			direcao = Direcao.OESTE;
+		} else if (direcao.equals(Direcao.SUL)) {
+			direcao = Direcao.LESTE;
+		} else if (direcao.equals(Direcao.OESTE)) {
+			direcao = Direcao.SUL;
+		} else if (direcao.equals(Direcao.LESTE)) {
+			direcao = Direcao.NORTE;
 		}
 	}
 
 	public void vira90Direita() {
-		if (direcao.equals("n")) {
-			direcao = "l";
-		} else if (direcao.equals("l")) {
-			direcao = "s";
-		} else if (direcao.equals("s")) {
-			direcao = "o";
-		} else if (direcao.equals("o")) {
-			direcao = "n";
+		if (direcao.equals(Direcao.NORTE)) {
+			direcao = Direcao.LESTE;
+		} else if (direcao.equals(Direcao.LESTE)) {
+			direcao = Direcao.SUL;
+		} else if (direcao.equals(Direcao.SUL)) {
+			direcao = Direcao.OESTE;
+		} else if (direcao.equals(Direcao.OESTE)) {
+			direcao = Direcao.NORTE;
 		}
 
 	}
 
 	public void moverFrente() {
-		if (direcao.equals("n")) {
+		if (direcao.equals(Direcao.NORTE)) {
 			y += 1;
-		} else if (direcao.equals("l")) {
+		} else if (direcao.equals(Direcao.LESTE)) {
 			x += 1;
-		} else if (direcao.equals("s")) {
+		} else if (direcao.equals(Direcao.SUL)) {
 			y -= 1;
-		} else if (direcao.equals("o")) {
+		} else if (direcao.equals(Direcao.OESTE)) {
 			x -= 1;
 		}
-
-		boolean ok = planalto.coordenadasDentroPlanalto(x, y);
-		if (ok == false) {
-			System.out.println("A sonda saiu do planalto");
-
+		
+		if (planalto != null) {
+			boolean ok = planalto.coordenadasDentroPlanalto(x, y);
+			if (ok == false) {
+				System.out.println("A sonda saiu do planalto");
+			}
 		}
 	}
 

@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InterfaceComUsuario {
-	Sonda sonda = new Sonda(5, 5, "n");
+	Sonda sonda = new Sonda(5, 5, Direcao.NORTE);
 
 	public Planalto lerInformacoesPlanalto() {
 		Scanner input = null;
@@ -34,7 +34,7 @@ public class InterfaceComUsuario {
 				int x = input.nextInt();
 				int y = input.nextInt();
 				System.out.println("Digite a direcao: ");
-				String direcao = input.next();
+				Direcao direcao = new DirecaoFactory().getDirecao(input.next());
 				return new Sonda(x, y, direcao);
 			} catch (InputMismatchException erro) {
 				System.out.println("Digite um valor numérico");
