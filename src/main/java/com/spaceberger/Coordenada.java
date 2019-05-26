@@ -16,7 +16,7 @@ public class Coordenada {
 	public void incrementaY() {
 		this.y += 1;
 	}
-	
+
 	public void decrementaX() {
 		this.x -= 1;
 	}
@@ -39,6 +39,10 @@ public class Coordenada {
 
 	public void setY(int y) {
 		this.y = y;
+	}
+	
+	public String toString() {
+		return x +" " + y;
 	}
 
 }
