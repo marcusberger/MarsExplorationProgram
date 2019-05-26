@@ -8,7 +8,7 @@ public class ExplorandoMarte {
 		Planalto planalto = interfaceComUsuario.lerInformacoesPlanalto();
 		Sonda sonda = interfaceComUsuario.lerInformacoesSonda();
 		sonda.obtendoInformacaoPlanalto(planalto);
-		char comandos[] = interfaceComUsuario.lerComandosTela();
+		Comando comandos[] = interfaceComUsuario.lerComandosTela();
 		sonda.executarComandos(comandos);
 		System.out.println(sonda);
 

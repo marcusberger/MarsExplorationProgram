@@ -81,26 +81,27 @@ public class SondaTest extends TestCase {
 	public void testExecutarComandos() {
 		Coordenada posicao = new Coordenada(1, 2);
 		Sonda sonda = new Sonda(posicao, Direcao.NORTE);
-		String comandos = "l";
-		sonda.executarComandos(comandos.toCharArray());
+		Comando[] comandos = { Comando.ESQUERDA };
+		sonda.executarComandos(comandos);
 		Assert.assertEquals(Direcao.OESTE, sonda.getDirecao());
 
 		sonda.setDirecao(Direcao.LESTE);
-		comandos = "r";
-		sonda.executarComandos(comandos.toCharArray());
+		Comando[] comandos1 = { Comando.DIREITA };
+		sonda.executarComandos(comandos1);
 		Assert.assertEquals(Direcao.SUL, sonda.getDirecao());
 
 		sonda.setDirecao(Direcao.NORTE);
-		comandos = "m";
-		sonda.executarComandos(comandos.toCharArray());
+		Comando[] comandos2 = { Comando.MOVER };
+		sonda.executarComandos(comandos2);
 		Assert.assertEquals(3, sonda.getCoordenada().getY());
 		Assert.assertEquals(1, sonda.getCoordenada().getX());
 
 		sonda.getCoordenada().setX(3);
 		sonda.getCoordenada().setY(3);
 		sonda.setDirecao(Direcao.LESTE);
-		comandos = "mmrmmrmrrm";
-		sonda.executarComandos(comandos.toCharArray());
+		Comando[] comandos3 = { Comando.MOVER, Comando.MOVER, Comando.DIREITA, Comando.MOVER, Comando.MOVER,
+				Comando.DIREITA, Comando.MOVER, Comando.DIREITA, Comando.DIREITA, Comando.MOVER };
+		sonda.executarComandos(comandos3);
 		Assert.assertEquals(5, sonda.getCoordenada().getX());
 		Assert.assertEquals(1, sonda.getCoordenada().getY());
 		Assert.assertEquals(Direcao.LESTE, sonda.getDirecao());

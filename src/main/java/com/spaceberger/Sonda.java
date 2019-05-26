@@ -72,17 +72,17 @@ public class Sonda {
 		this.planalto = planalto;
 	}
 
-	public void executarComandos(char[] comandos) {
-		for (char lrm : comandos) {
+	public void executarComandos(Comando[] comandos) {
+		for (Comando lrm : comandos) {
 
 			switch (lrm) {
-			case 'l':
+			case ESQUERDA:
 				this.vira90Esquerda();
 				break;
-			case 'r':
+			case DIREITA:
 				this.vira90Direita();
 				break;
-			case 'm':
+			case MOVER:
 				this.moverFrente();
 				break;
 			default:

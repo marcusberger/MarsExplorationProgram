@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InterfaceComUsuario {
-	Sonda sonda = new Sonda(new Coordenada(5, 5) , Direcao.NORTE);
+	Sonda sonda = new Sonda(new Coordenada(5, 5), Direcao.NORTE);
 
 	public Planalto lerInformacoesPlanalto() {
 		Scanner input = null;
@@ -34,7 +34,7 @@ public class InterfaceComUsuario {
 				int x = input.nextInt();
 				int y = input.nextInt();
 				System.out.println("Digite a direcao: ");
-				Direcao direcao = new DirecaoFactory().getDirecao(input.next());
+				Direcao direcao = Direcao.getDirecao(input.next());
 				return new Sonda(new Coordenada(x, y), direcao);
 			} catch (InputMismatchException erro) {
 				System.out.println("Digite um valor numérico");
@@ -42,9 +42,19 @@ public class InterfaceComUsuario {
 		}
 	}
 
-	public char[] lerComandosTela() {
+	public Comando[] lerComandosTela() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Digite um comando para a Sonda: ");
-		return input.next().toCharArray();
+
+		char[] strComandos = input.next().toCharArray();
+		// cria um array de comandos vazio
+		Comando[] comandos = new Comando[strComandos.length];
+		for (int i = 0; i < strComandos.length; i++) {
+			// converte char para um Comando
+			Comando comando = Comando.getComando(strComandos[i]);
+			// add um comando no array
+			comandos[i] = comando;
+		}
+		return comandos;
 	}
 }
