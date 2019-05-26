@@ -3,14 +3,17 @@ package com.spaceberger;
 public class Sonda {
 
 	private Direcao direcao;
-	private int x, y;
+	private Coordenada coordenada;
 	private Planalto planalto;
 
-	public Sonda(int x, int y, Direcao direcao) {
-		this.x = x;
-		this.y = y;
+	public Sonda(Coordenada coordenada, Direcao direcao) {
+		this.coordenada = coordenada;
 		this.direcao = direcao;
 
+	}
+	
+	public Coordenada getCoordenada() {
+		return coordenada;
 	}
 
 	public Direcao getDirecao() {
@@ -19,22 +22,6 @@ public class Sonda {
 
 	public void setDirecao(Direcao direcao) {
 		this.direcao = direcao;
-	}
-
-	public int getX() {
-		return x;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
 	}
 
 	public void vira90Esquerda() {
@@ -64,17 +51,17 @@ public class Sonda {
 
 	public void moverFrente() {
 		if (direcao.equals(Direcao.NORTE)) {
-			y += 1;
+			coordenada.incrementaY();
 		} else if (direcao.equals(Direcao.LESTE)) {
-			x += 1;
+			coordenada.incrementaX();
 		} else if (direcao.equals(Direcao.SUL)) {
-			y -= 1;
+			coordenada.decrementaY();
 		} else if (direcao.equals(Direcao.OESTE)) {
-			x -= 1;
+			coordenada.decrementaX();
 		}
 		
 		if (planalto != null) {
-			boolean ok = planalto.coordenadasDentroPlanalto(x, y);
+			boolean ok = planalto.coordenadasDentroPlanalto(coordenada);
 			if (ok == false) {
 				System.out.println("A sonda saiu do planalto");
 			}
@@ -107,7 +94,7 @@ public class Sonda {
 
 	@Override
 	public String toString() {
-		return x + " " + y + " " + direcao;
+		return coordenada + " " + direcao;
 	}
 
 }

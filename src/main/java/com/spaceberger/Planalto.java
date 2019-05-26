@@ -26,8 +26,9 @@ public class Planalto {
 		this.limiteY = limiteY;
 	}
 
-	public boolean coordenadasDentroPlanalto(int x, int y) {
-		if (x > getLimiteX() || y > getLimiteY() || x < 0 || y < 0) {
+	public boolean coordenadasDentroPlanalto(Coordenada coordenada) {
+		if (coordenada.getX() > getLimiteX() || coordenada.getY() > getLimiteY() || coordenada.getX() < 0
+				|| coordenada.getY() < 0) {
 			return false;
 		}
 		return true;
