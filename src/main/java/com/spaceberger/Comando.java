@@ -2,8 +2,31 @@ package com.spaceberger;
 
 public enum Comando {
 
-	MOVER("m"), ESQUERDA("l"), DIREITA("r");
-
+	MOVER("m") {
+		@Override
+		public void executa(Sonda sonda) {
+			Direcao d = sonda.getDirecao();
+			Coordenada c = sonda.getCoordenada();
+			d.mover(c);
+		}
+	},
+	ESQUERDA("l") {
+		@Override
+		public void executa(Sonda sonda) {
+			Direcao d = sonda.getDirecao();
+			sonda.setDirecao(d.virarEsquerda());
+		}
+	},
+	DIREITA("r") {
+		@Override
+		public void executa(Sonda sonda) {
+			Direcao d = sonda.getDirecao();
+			sonda.setDirecao(d.virarDireita());
+		}
+	};
+	
+	abstract public void executa(Sonda sonda);
+	
 	private String nome;
 
 	private Comando(String comando) {
